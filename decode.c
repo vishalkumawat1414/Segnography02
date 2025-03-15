@@ -72,9 +72,8 @@ Status do_decoding(char*stego, DecodeInfo*dInfo){
         }
         SecData[i] = 0;
         dInfo->SecData = SecData;
-       
-        printf("magic : %s\n", SecData);
-
+        // printf("magic : %s\n", SecData);
+        
         // 3rd opening secrect file and put data
          FILE*secPtr = fopen(dInfo->secFileName,"w");
          fwrite(dInfo->SecData, 1, dInfo->secSize,secPtr);
