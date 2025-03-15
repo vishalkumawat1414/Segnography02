@@ -150,8 +150,9 @@ Status check_capacity(EncodeInfo *eInfo){
     int Sec_fsize = get_file_size(sec);
     rewind(sec);
     eInfo->size_secret_file = Sec_fsize;  //size to structure
-    fscanf(sec,"%[^\n]",eInfo->secret_data);
-    // fread(eInfo->secret_data,1,35,sec);
+
+    fread(eInfo->secret_data,1,300,sec);  //secret data to structure
+
     fclose(sec);
 
     int src_extns = strlen(strstr(eInfo->secret_fname,".")); //size of src extension

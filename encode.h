@@ -23,7 +23,7 @@ typedef struct _EncodeInfo
     /* Secret File Info */
     char *secret_fname;
     FILE *fptr_secret;
-    char secret_data[100];
+    char secret_data[500];
     long size_secret_file;
 
     /* Stego Image Info */
