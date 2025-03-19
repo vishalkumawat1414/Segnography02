@@ -1,6 +1,6 @@
 #ifndef ENCODE_H
 #define ENCODE_H
-
+#include <stdlib.h>
 #include "types.h" // Contains user defined types
 
 /* 
@@ -23,7 +23,7 @@ typedef struct _EncodeInfo
     /* Secret File Info */
     char *secret_fname;
     FILE *fptr_secret;
-    char secret_data[500];
+    char *secret_data;
     long size_secret_file;
 
     /* Stego Image Info */
@@ -54,7 +54,7 @@ Status check_capacity(EncodeInfo *eInfo);
 uint get_image_size_for_bmp(FILE *fptr_image);
 
 /* Get file size */
-uint get_file_size(FILE *fptr);
+long get_file_size(FILE *fptr);
 
 /* Copy bmp image header */
 Status copy_bmp_header(FILE *fptr_src_image, FILE *fptr_dest_image);

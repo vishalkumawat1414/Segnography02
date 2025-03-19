@@ -19,11 +19,9 @@ uint get_image_size_for_bmp(FILE *fptr_image)
 
     // Read the width (an int)
     fread(&width, sizeof(int), 1, fptr_image);
-    printf("width = %u\n", width);
 
     // Read the height (an int)
     fread(&height, sizeof(int), 1, fptr_image);
-    printf("height = %u\n", height);
     rewind(fptr_image);
     // Return image capacity
     return width * height * 3;
@@ -132,7 +130,7 @@ Status do_encoding(EncodeInfo *eInfo){
         //coping remaing data
         Status remainData = copy_remaining_img_data(eInfo->fptr_src_image, eInfo->fptr_stego_image);
         if(remainData==e_failure) return remainData;
-      
+
         fclose(eInfo->fptr_stego_image);
         fclose(eInfo->fptr_src_image);
     }
@@ -147,12 +145,14 @@ Status check_capacity(EncodeInfo *eInfo){
     
     // Size of secrete file
     FILE*sec = fopen(eInfo->secret_fname,"r");
-    int Sec_fsize = get_file_size(sec);
+    long Sec_fsize = get_file_size(sec);
     rewind(sec);
     eInfo->size_secret_file = Sec_fsize;  //size to structure
 
-    fread(eInfo->secret_data,1,300,sec);  //secret data to structure
+    eInfo->secret_data = (char*)calloc(1,eInfo->size_secret_file+1);
 
+    fread(eInfo->secret_data,1,eInfo->size_secret_file,sec);  //secret data to structure
+    
     fclose(sec);
 
     int src_extns = strlen(strstr(eInfo->secret_fname,".")); //size of src extension
@@ -165,7 +165,7 @@ Status check_capacity(EncodeInfo *eInfo){
     return e_success;
 }
 
-uint get_file_size(FILE *fptr){
+long get_file_size(FILE *fptr){
     fseek(fptr, 0, SEEK_END);
     int Sec_fsize = ftell(fptr);
     rewind(fptr);
@@ -308,7 +308,7 @@ Status encode_secret_file_data(EncodeInfo *eInfo){
 
     // encoding the secret_file_extn
     Status res = e_success;
-    while (eInfo->secret_data[j]){
+    while (j<eInfo->size_secret_file){
         // getting data in buffer
         fread(buffer, 1, sizeof buffer, eInfo->fptr_src_image);
         // passed for ecoding
@@ -330,4 +330,5 @@ Status copy_remaining_img_data(FILE *fptr_src, FILE *fptr_dest){
     while (fread(buffer, 1, 1024,fptr_src )>0){
            fwrite(buffer,1,1024,fptr_dest);
     }
+    printf("SUCCESS: Remaining Data Encoded!\n");
 }

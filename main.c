@@ -16,9 +16,10 @@ int main(int argb,char*argv[])
     if(ret == e_encode){
         //encoding
         if(arg_ret==e_success){
-            printf("SUCCESS: Encoding started...\n");
+            printf("<--------------Encoding started--------------->\n");
             Status res =  do_encoding(&eInfo);
-            if(res==e_success) printf("SUCCESS: Encoding Done!\n");
+            if(res==e_success)
+                printf("<--------------Encoding Done--------------->\n");
             else printf("ERROR: Encoding Unsuccessfull!\n");
         }else {
             printf("ERROR: Encode validation failed!\n");
@@ -26,9 +27,10 @@ int main(int argb,char*argv[])
         
     }else if(ret==e_decode){
         if(decode_ret==e_success){
-            printf("Decoding started...\n");
+            printf("<--------------Decoding Started--------------->\n");
             Status res= do_decoding(argv[2],&dInfo);
-            if(res == e_success) printf("Decoding Done!!\n");
+            if(res == e_success)
+                printf("<--------------Decoding Done--------------->\n");
             else printf("ERROR: Decoding failed!\n");
         }else {
             printf("ERROR: Decode validation failed!\n");

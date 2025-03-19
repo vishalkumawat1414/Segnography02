@@ -1,0 +1,15 @@
+cmd's used for operations 
+1)gcc encode.c decode.c main.c  [for compilation]
+2) ./a.out -e beautiful.bmp sample.txt encoded_file_name(optional, default "stego.bmp")   [for encoding , sample.txt, sample.c, sample.bmp]
+3)./a.out -d stego.bmp "#*" decoded_file_name(optional, default "Secret")
+
+Problems during project creation & sol
+1)Encoding : dont put hard values/ or constant values for buffers
+             use calloc and malloc
+             use loop (j<src_size) on sizes rather than using while(str[i]) (imp)
+             keep track of pointers 
+             while making buffers keep the size in mind , weather to include null or not
+             proper return type of functions (imp)
+2)Decoding : same as above
+
+
