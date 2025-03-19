@@ -1,7 +1,7 @@
 cmd's used for operations 
-1)gcc encode.c decode.c main.c  [for compilation]
-2) ./a.out -e beautiful.bmp sample.txt encoded_file_name(optional, default "stego.bmp")   [for encoding , sample.txt, sample.c, sample.bmp]
-3)./a.out -d stego.bmp "#*" decoded_file_name(optional, default "Secret")
+1st)gcc encode.c decode.c main.c  [for compilation]
+2nd) ./a.out -e beautiful.bmp sample.txt encoded_file_name(optional, default "stego.bmp")   [for encoding , sample.txt, sample.c, sample.bmp]
+3rd)./a.out -d stego.bmp "#*" decoded_file_name(optional, default "Secret") [for decoding]
 
 Problems during project creation & sol
 1)Encoding : dont put hard values/ or constant values for buffers
